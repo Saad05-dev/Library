@@ -57,3 +57,8 @@ function displayBooks()
 }
 displayBooks();
 
+//Button to add books
+const addNewBook = document.getElementsByClassName("add-book");
+
+addNewBook.addEventListener("click");
+

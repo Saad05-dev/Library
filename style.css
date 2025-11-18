@@ -9,6 +9,8 @@ body
     font-size: 20px;
     padding: 20px;
     background-color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
 }
 
 header
@@ -48,4 +50,30 @@ header
 .book-card .details {
     font-size: 0.9em;
     color: #666;
+}
+.add-book
+{
+    margin: 40px auto;
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    font-size: 0.9em;
+    color: #0056b3;
+}
+.add-book:hover
+{
+    background-color: #0056b3;
+    color: white;
+    transition: 0.5s ease-in;
+}
+.add-book:active
+{
+    scale: 0.7;
+    opacity: 0.7;
+}
+.modal
+{
+    display: none;
 }

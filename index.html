@@ -18,6 +18,21 @@
         <div id="book-container"></div>
     </main>
     
+    <button class="add-book">New Book</button>
+
+    <!-- a hidden form that a new book that gets triggered on button click -->
+    <div id="book-modal" class="modal">  <!-- display:none or hidden class -->
+        <div class="modal-content">
+            <form id="book-form">
+            <input type="text" id="title" placeholder="Title" required>
+            <input type="text" id="author" placeholder="Author" required>
+            <input type="number" id="pages" placeholder="Pages" required>
+            <label><input type="checkbox" id="read"> Read</label>
+            <button type="submit">Add Book</button>
+            <button type="button" id="close-modal">Cancel</button>
+            </form>
+        </div>
+    </div>
     <!-- Link to JS file -->
     <script src="script.js"></script>
 </body>
