@@ -9,11 +9,11 @@ function Book(title,author,pages,read){
     this.pages = pages;
     this.read = read;
   
-    this.info = function()
-    {
-        const readStatus = this.read ? "read." : "not read yet.";
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${readStatus}`;
-    }
+}
+Book.prototype.info = function()
+{
+    const readStatus = this.read ? "read." : "not read yet.";
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${readStatus}`;
 }
 
 //test Book constructor
@@ -52,13 +52,37 @@ function displayBooks()
             <p class="details">${book.pages} pages</p>
             <p class="details">Status: ${book.read ? 'Read' : 'Not Read Yet'}</p>
             `;
+            card.setAttribute('data-id', book.id);
             bookContainer.appendChild(card);
     })  
 }
 displayBooks();
 
-//Button to add books
-const addNewBook = document.getElementsByClassName("add-book");
+//Button for adding books 
+const addNewBook = document.getElementById("new-book");
 
-addNewBook.addEventListener("click");
+addNewBook.addEventListener("click",() => modal.showModal());
 
+//From for adding books
+const modal = document.getElementById("addBookModal");
+
+const form = document.getElementById("book-form");
+
+form.addEventListener("submit", function(e)
+{
+    e.preventDefault();
+
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').checked;
+
+    addBookToLibrary(title,author,pages,read);
+    displayBooks();
+    modal.close();
+    form.reset();
+});
+
+//Button for closing form
+const closeBtn = document.getElementById("close-modal");
+closeBtn.addEventListener("click", () => modal.close());
