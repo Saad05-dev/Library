@@ -46,15 +46,60 @@ function displayBooks()
     myLibrary.forEach(book => {
             const card = document.createElement('div');
             card.classList.add('book-card');
+            card.setAttribute('data-id', book.id);
+
             card.innerHTML = `
             <h3>${book.title}</h3>
             <p class="author">by ${book.author}</p>
             <p class="details">${book.pages} pages</p>
             <p class="details">Status: ${book.read ? 'Read' : 'Not Read Yet'}</p>
+            <div class="button-group">
+                <button class="toggle-read-btn btn second" data-id="${book.id}">
+                    ${book.read ? 'Mark as Unread' : 'Mark as Read'}
+                </button>
+                <button class="delete-btn btn second" data-id="${book.id}">Delete</button>
+            </div>
             `;
-            card.setAttribute('data-id', book.id);
+
             bookContainer.appendChild(card);
-    })  
+    });  
+    addButtonListeners();
+}
+function addButtonListeners()
+{
+    // Delete buttons
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    deleteButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const bookId = e.target.getAttribute('data-id');
+            deleteBook(bookId);
+        });
+    });
+    
+    // Toggle read status buttons
+    const toggleButtons = document.querySelectorAll('.toggle-read-btn');
+    toggleButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const bookId = e.target.getAttribute('data-id');
+            toggleReadStatus(bookId);
+        });
+    });
+}
+function deleteBook(bookId)
+{
+    const index = myLibrary.findIndex(book => book.id === bookId);
+    if (index !== -1) {
+        myLibrary.splice(index, 1);
+        displayBooks();
+    }
+}
+function toggleReadStatus(bookId)
+{
+    const book = myLibrary.find(book => book.id === bookId);
+    if (book) {
+        book.read = !book.read;
+        displayBooks();
+    }
 }
 displayBooks();
 

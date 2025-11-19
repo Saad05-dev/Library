@@ -75,6 +75,14 @@ header
     scale: 0.7;
     opacity: 0.7;
 }
+.button-group
+{
+    display: flex;
+}
+.second
+{
+    width: 110px;
+}
 .modal
 {
     width: 25%;
